@@ -2,10 +2,12 @@ package com.example.ethaxcryptoservice.dto;
 
 
 
+
 import lombok.Data;
+import java.io.Serializable;
 
 @Data
-public class CryptoPriceDTO {
+public class CryptoPriceDTO implements Serializable {
     private String id;
     private String symbol;
     private String name;

@@ -5,6 +5,7 @@ package com.example.ethaxcryptoservice.service;
 
 import com.example.ethaxcryptoservice.dto.CryptoPriceDTO;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -21,7 +22,7 @@ public class CryptoService {
     private String tokenId;
 
     private final RestTemplate restTemplate = new RestTemplate();
-
+    @Cacheable("ethax-price")
     public CryptoPriceDTO getEthaxPrice() {
         String url = String.format("%s?vs_currency=%s&ids=%s", apiUrl, vsCurrency, tokenId);
         CryptoPriceDTO[] response = restTemplate.getForObject(url, CryptoPriceDTO[].class);
